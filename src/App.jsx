@@ -1,7 +1,12 @@
 import { useState } from "react";
+import Footer from "./components/footer";
 
 function App() {
-    return <></>;
+  return (
+    <>
+      <Footer />
+    </>
+  );
 }
 
 export default App;
