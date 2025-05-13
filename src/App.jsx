@@ -4,10 +4,10 @@ import Navbar from "./components/Navbar";
 import OpenEntryCard from "./components/OpenEntryCard";
 
 function App() {
-  return (
-    <>
-      <Navbar />
-    <Home />
+    return (
+        <>
+            <Navbar />
+            <Home />
         </>
     );
 }
