@@ -16,14 +16,8 @@ const Form = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const existingEntry = JSON.parse(localStorage.getItem("DairyEntry")) || [];
 
-    const updateEntry = [...existingEntry, formData];
-
-    localStorage.setItem("DairyEntry", JSON.stringify(updateEntry));
-
-    console.log("form Data", formData);
-    if (
+     if (
       !formData.title ||
       !formData.date ||
       !formData.image ||
@@ -32,6 +26,14 @@ const Form = () => {
       alert("Please fill all field");
       return;
     }
+    const existingEntry = JSON.parse(localStorage.getItem("Entry")) || [];
+
+    const updateEntry = [...existingEntry, formData];
+
+    localStorage.setItem("Entry", JSON.stringify(updateEntry));
+
+    console.log("form Data", formData);
+   
     setFformData({ title: "", date: "", image: "", content: "" });
     setShowForm(false);
   };
