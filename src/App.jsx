@@ -5,13 +5,16 @@ import Form from "./components/Form";
 import OpenEntryCard from "./components/OpenEntryCard";
 
 function App() {
-    return (
-        <>
-            <Navbar />
-            <Home />
-          <Form />
+  const [entries, setEntries] = useState(
+    JSON.parse(localStorage.getItem("entries")) || []
+  );
+  return (
+    <>
+      <Navbar />
+      <Home entries={entries} />
+      <Form entries={entries} setEntries={setEntries} />
     </>
-    );
+  );
 }
 
 export default App;

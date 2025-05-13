@@ -1,28 +1,31 @@
 import { useState } from "react";
 
-const Form = () => {
+const Form = ({ entries, setEntries }) => {
   const [showForm, setShowForm] = useState(false);
-  const [formData, setFformData] = useState({
+  const [formData, setFormData] = useState({
     title: "",
     date: "",
     image: "",
     content: "",
+    active: false,
   });
 
   const handleChange = (event) => {
-    const { name, value } = event.target;
-    setFformData((prev) => ({ ...prev, [name]: value }));
+    const { name, value, files } = event.target;
+    if (name === "image" && files.length > 0) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setFormData((prev) => ({ ...prev, image: reader.result }));
+      };
+      reader.readAsDataURL(files[0]);
+    } else {
+      setFormData((prev) => ({ ...prev, [name]: value }));
+    }
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const existingEntry = JSON.parse(localStorage.getItem("DairyEntry")) || [];
 
-    const updateEntry = [...existingEntry, formData];
-
-    localStorage.setItem("DairyEntry", JSON.stringify(updateEntry));
-
-    console.log("form Data", formData);
     if (
       !formData.title ||
       !formData.date ||
@@ -32,17 +35,29 @@ const Form = () => {
       alert("Please fill all field");
       return;
     }
-    setFformData({ title: "", date: "", image: "", content: "" });
+
+    const updateEntry = [...entries, formData];
+
+    localStorage.setItem("entries", JSON.stringify(updateEntry));
+
+    setEntries(updateEntry);
+
+    console.log("form Data", formData);
+
+    setFormData({ title: "", date: "", image: "", content: "" });
     setShowForm(false);
   };
   return (
-   <div className="flex flex-col items-center h-screen">
-      <button className="btn my-5 bg-sky-800 text-white px-9" onClick={() => setShowForm(true)}>
+    <div className="flex flex-col items-center h-screen">
+      <button
+        className="btn my-5 bg-sky-800 text-white px-9"
+        onClick={() => setShowForm(true)}
+      >
         Add Entry
       </button>
 
       {showForm && (
-        <div className= "card p-7 w-1/2" >
+        <div className="card p-7 w-1/2">
           <form onSubmit={handleSubmit} className="w-full">
             <div className="mb-2">
               <label htmlFor="title">Title</label>
@@ -90,7 +105,9 @@ const Form = () => {
                 name="content"
               />
             </div>
-            <button className="btn mt-4 item-center text-white bg-sky-800 px-10 justify-center">Submit</button>
+            <button className="btn mt-4 item-center text-white bg-sky-800 px-10 justify-center">
+              Submit
+            </button>
           </form>
         </div>
       )}
