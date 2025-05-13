@@ -1,10 +1,15 @@
-const Entrycard = (entry) => {
+const Entrycard = ({ entry }) => {
     return (
-        <div>
-            <img src={entry.image} />
+        <div className="grid m-2 bg-gray-300 rounded-2xl overflow-hidden">
+            <img
+                src={entry.image}
+                className="w-[400px] h-[200px]"
+            />
             <div>
-                <h1>{entry.title}</h1>
-                <p>{entry.date}</p>
+                <p className="text-black text-xs ml-2 mt-2 pl-2">
+                    {entry.date}
+                </p>
+                <h1 className="text-black ml-2 mb-3 pl-2">{entry.title}</h1>
             </div>
         </div>
     );
