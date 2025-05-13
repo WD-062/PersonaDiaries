@@ -1,3 +1,12 @@
 	
 @import "tailwindcss";
 @plugin "daisyui";
+
+@layer components {
+  .card {
+    background-color: #f6f4f3;
+    border-radius: var(--rounded-lg);
+    padding: var(--spacing-6);
+    box-shadow: var(--shadow-xl);
+  }
+}

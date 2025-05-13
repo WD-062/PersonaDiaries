@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Home from "./pages/Home";
 import Navbar from "./components/Navbar";
+import Form from "./components/Form";
 import OpenEntryCard from "./components/OpenEntryCard";
 
 function App() {
@@ -8,7 +9,8 @@ function App() {
         <>
             <Navbar />
             <Home />
-        </>
+          <Form />
+    </>
     );
 }
 
