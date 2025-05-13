@@ -2,7 +2,7 @@ import { useState } from "react";
 
 const Form = ({ entries, setEntries }) => {
   const [showForm, setShowForm] = useState(false);
-  const [formData, setFformData] = useState({
+  const [formData, setFormData] = useState({
     title: "",
     date: "",
     image: "",
@@ -11,8 +11,16 @@ const Form = ({ entries, setEntries }) => {
   });
 
   const handleChange = (event) => {
-    const { name, value } = event.target;
-    setFformData((prev) => ({ ...prev, [name]: value }));
+    const { name, value, files } = event.target;
+    if (name === "image" && files.length > 0) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setFormData((prev) => ({ ...prev, image: reader.result }));
+      };
+      reader.readAsDataURL(files[0]);
+    } else {
+      setFormData((prev) => ({ ...prev, [name]: value }));
+    }
   };
 
   const handleSubmit = (event) => {
@@ -27,7 +35,7 @@ const Form = ({ entries, setEntries }) => {
       alert("Please fill all field");
       return;
     }
-    
+
     const updateEntry = [...entries, formData];
 
     localStorage.setItem("entries", JSON.stringify(updateEntry));
@@ -36,7 +44,7 @@ const Form = ({ entries, setEntries }) => {
 
     console.log("form Data", formData);
 
-    setFformData({ title: "", date: "", image: "", content: "" });
+    setFormData({ title: "", date: "", image: "", content: "" });
     setShowForm(false);
   };
   return (
