@@ -1,12 +1,13 @@
 import { useState } from "react";
 
-const Form = () => {
+const Form = ({ entries, setEntries }) => {
   const [showForm, setShowForm] = useState(false);
   const [formData, setFformData] = useState({
     title: "",
     date: "",
     image: "",
     content: "",
+    active: false,
   });
 
   const handleChange = (event) => {
@@ -17,7 +18,7 @@ const Form = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-     if (
+    if (
       !formData.title ||
       !formData.date ||
       !formData.image ||
@@ -26,25 +27,29 @@ const Form = () => {
       alert("Please fill all field");
       return;
     }
-    const existingEntry = JSON.parse(localStorage.getItem("Entry")) || [];
+    
+    const updateEntry = [...entries, formData];
 
-    const updateEntry = [...existingEntry, formData];
+    localStorage.setItem("entries", JSON.stringify(updateEntry));
 
-    localStorage.setItem("Entry", JSON.stringify(updateEntry));
+    setEntries(updateEntry);
 
     console.log("form Data", formData);
-   
+
     setFformData({ title: "", date: "", image: "", content: "" });
     setShowForm(false);
   };
   return (
-   <div className="flex flex-col items-center h-screen">
-      <button className="btn my-5 bg-sky-800 text-white px-9" onClick={() => setShowForm(true)}>
+    <div className="flex flex-col items-center h-screen">
+      <button
+        className="btn my-5 bg-sky-800 text-white px-9"
+        onClick={() => setShowForm(true)}
+      >
         Add Entry
       </button>
 
       {showForm && (
-        <div className= "card p-7 w-1/2" >
+        <div className="card p-7 w-1/2">
           <form onSubmit={handleSubmit} className="w-full">
             <div className="mb-2">
               <label htmlFor="title">Title</label>
@@ -92,7 +97,9 @@ const Form = () => {
                 name="content"
               />
             </div>
-            <button className="btn mt-4 item-center text-white bg-sky-800 px-10 justify-center">Submit</button>
+            <button className="btn mt-4 item-center text-white bg-sky-800 px-10 justify-center">
+              Submit
+            </button>
           </form>
         </div>
       )}
