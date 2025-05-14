@@ -3,11 +3,11 @@ import { useState } from "react";
 const Form = ({ entries, setEntries }) => {
   const [showForm, setShowForm] = useState(false);
   const [formData, setFormData] = useState({
+    active: false,
     title: "",
     date: "",
     image: "",
     content: "",
-    active: false,
   });
 
   const handleChange = (event) => {
@@ -51,8 +51,7 @@ const Form = ({ entries, setEntries }) => {
     <div className="flex flex-col items-center h-screen">
       <button
         className="btn my-5 bg-sky-800 text-white px-9"
-        onClick={() => setShowForm(true)}
-      >
+        onClick={() => setShowForm(true)}>
         Add Entry
       </button>
 

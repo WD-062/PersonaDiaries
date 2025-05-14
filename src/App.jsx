@@ -11,7 +11,7 @@ function App() {
   return (
     <>
       <Navbar />
-      <Home entries={entries} />
+      <Home entries={entries} setEntries={setEntries} />
       <Form entries={entries} setEntries={setEntries} />
     </>
   );
