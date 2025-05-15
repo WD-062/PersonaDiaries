@@ -36,8 +36,8 @@ const Form = ({ entries, setEntries }) => {
       return;
     }
     const existindDate = entries.map((entry) => entry.date);
-    if(existindDate.include(formData.date)){
-      alert("This date already has an entry, Please select another Date");
+    if(existindDate.includes(formData.date)){
+      alert("This date already has an entry. Please select another date :)");
       return;
     }
     const updateEntry = [...entries, formData];
