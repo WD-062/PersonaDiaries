@@ -12,7 +12,7 @@ function App() {
   return (
     <>
       <Navbar />
-      <Home entries={entries} setEntries={setEntries} />
+      <Home entries={entries} />
       <Form entries={entries} setEntries={setEntries} />
       <Footer />
     </>
