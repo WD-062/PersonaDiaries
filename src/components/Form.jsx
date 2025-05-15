@@ -36,7 +36,12 @@ const Form = ({ entries, setEntries }) => {
       return;
     }
 
-    const updateEntry = [...entries, formData];
+    const newEntry = {
+      ...formData,
+      id: Date.now().toString(),
+    };
+
+    const updateEntry = [...entries, newEntry];
 
     localStorage.setItem("entries", JSON.stringify(updateEntry));
 
