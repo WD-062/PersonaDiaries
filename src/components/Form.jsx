@@ -43,6 +43,12 @@ const Form = ({ entries, setEntries }) => {
 
     const updateEntry = [...entries, newEntry];
 
+    const existindDate = entries.map((entry) => entry.date);
+    if (existindDate.include(formData.date)) {
+      alert("This date already has an entry, Please select another Date");
+      return;
+    }
+
     localStorage.setItem("entries", JSON.stringify(updateEntry));
 
     setEntries(updateEntry);

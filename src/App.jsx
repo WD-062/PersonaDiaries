@@ -7,6 +7,7 @@ import OpenEntryCard from "./components/OpenEntryCard";
 function App() {
   const [entries, setEntries] = useState(
     JSON.parse(localStorage.getItem("entries")) || []
+    
   );
   return (
     <>
