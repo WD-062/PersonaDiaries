@@ -1,18 +1,6 @@
 import React from "react";
 
 function OpenEntryCard({ entry, toggleActive }) {
-  // const changeActive = () => {
-  //   setIsActive(!isActive);
-
-  //   const storedEntries = JSON.parse(localStorage.getItem("entries")) || [];
-
-  //   const updatedEntries = storedEntries.map((e) =>
-  //     e.id === entry.id ? { ...e, active: !isActive } : e
-  //   );
-
-  //   localStorage.setItem("entries", JSON.stringify(updatedEntries));
-  // };
-
   return (
     <div className=" absolute ml-70 mt-140 w-1/2 place-content-center place-self-center">
       <div className=" p-5 bg-teal-800 mt-10 rounded-4xl">

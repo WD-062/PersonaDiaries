@@ -1,16 +1,4 @@
 const Entrycard = ({ entry, toggleActive }) => {
-  // const changeActive = () => {
-  //   setIsActive(!isActive);
-
-  //   const storedEntries = JSON.parse(localStorage.getItem("entries")) || [];
-
-  //   const updatedEntries = storedEntries.map((e) =>
-  //     e.id === entry.id ? { ...e, active: !isActive } : e
-  //   );
-
-  //   localStorage.setItem("entries", JSON.stringify(updatedEntries));
-  // };
-
   return (
     <div className="grid m-2 bg-gray-300 rounded-2xl overflow-hidden">
       <img src={entry.image} className="w-[400px] h-[200px]" />
